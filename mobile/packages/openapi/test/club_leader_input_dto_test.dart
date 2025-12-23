@@ -1,0 +1,46 @@
+import 'package:test/test.dart';
+import 'package:openapi/openapi.dart';
+
+// tests for ClubLeaderInputDto
+void main() {
+  final instance = ClubLeaderInputDtoBuilder();
+  // TODO add properties to the builder and call build()
+
+  group(ClubLeaderInputDto, () {
+    // String role
+    test('to test the property `role`', () async {
+      // TODO
+    });
+
+    // String fullName
+    test('to test the property `fullName`', () async {
+      // TODO
+    });
+
+    // String email
+    test('to test the property `email`', () async {
+      // TODO
+    });
+
+    // String phone
+    test('to test the property `phone`', () async {
+      // TODO
+    });
+
+    // String cin
+    test('to test the property `cin`', () async {
+      // TODO
+    });
+
+    // String studyLevel
+    test('to test the property `studyLevel`', () async {
+      // TODO
+    });
+
+    // String specialization
+    test('to test the property `specialization`', () async {
+      // TODO
+    });
+
+  });
+}
