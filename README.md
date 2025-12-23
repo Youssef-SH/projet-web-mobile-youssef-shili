@@ -5,8 +5,9 @@
 <h1 align="center">ISIMM ClubHub</h1>
 
 <p align="center">
-  A modern platform for <strong>ISIMM clubs</strong> — built to manage events, rooms,<br>
-  and keep students connected with a clean admin web app and mobile-first experience.
+  A centralized platform designed to manage and showcase student club activities within ISIMM.<br>
+  It provides a single, institutional space for clubs, students, and administrators to coordinate events,<br>
+  publish updates, and avoid scheduling conflicts.
 </p>
 
 <hr/>
@@ -21,149 +22,74 @@ ISIMM ClubHub brings everything club-related into one place:
 - ✅ An approval flow so rooms & times don't clash
 - 🔐 Role-based access (Student, Club, Admin)
 
-> Mobile (Flutter) and Web Admin (Next.js) live here too — we're starting with the Backend (NestJS + PostgreSQL) so you can run the core API locally right away.
-
 ---
 
-## Project Status
-
-| Component | Status |
-|-----------|--------|
-| Backend (NestJS + TypeORM + PostgreSQL) | ✅ Ready for local use |
-| Mobile (Flutter) | 🚧 Coming soon |
-| Web Admin (Next.js) | 🚧 Coming soon |
-
----
-
-## Tech Overview
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
-| Backend | NestJS, TypeORM, PostgreSQL |
-| Docs | Swagger UI auto-generated at `/api/docs` |
-| Auth | JWT (access + refresh), role-based guards |
-| File uploads | Multipart for CSV (invites) |
-| Infra | Works locally; cloud deploy later |
+| Backend API | NestJS, TypeORM, PostgreSQL |
+| Mobile App | Flutter |
+| Web Admin | Next.js |
+| Authentication | JWT (access + refresh tokens) |
+| API Documentation | Swagger UI |
 
 ---
 
-## Folder Layout
+## Project Structure
 
 ```
 isimm-clubhub/
-├─ backend/           # NestJS app (this is what you'll run)
-├─ mobile/            # Flutter app (coming soon)
-├─ web-admin/         # Next.js admin dashboard (coming soon)
-└─ docs/
-   ├─ api-contract.md # REST API contract
-   ├─ readme/         # product notes, specs, etc.
-   └─ assets/
-      └─ logo.png     # <-- replace this with the real logo
+├─ backend/                          # NestJS REST API
+├─ mobile/                           # Flutter mobile application
+├─ web-admin/                        # Next.js admin dashboard
+├─ ISIMM-ClubHub-Youssef-Shili.pdf  # Project report
+└─ README.md
 ```
 
 ---
 
-## Run the Backend Locally
+## Key Features
 
-> Short and sweet. You'll have a running API + Swagger in a few minutes.
+**For Students:**
+- Browse upcoming club events
+- View club profiles and activities
+- Stay updated with announcements
 
-### 1. Prerequisites
+**For Clubs:**
+- Create and manage club pages
+- Submit event proposals
+- Post updates and announcements
 
-- Node.js 18+
-- npm 9+
-- PostgreSQL 13+ (locally or via Docker)
-
-### 2. Create a database
-
-In PostgreSQL, create a database (use any name you like):
-
-```sql
-CREATE DATABASE clubhub_db;
-```
-
-### 3. Add your environment file
-
-Copy `.env.example` to `.env` inside `backend/` and fill in your values.
-
-```
-backend/
-  .env           # <— you create this (gitignored)
-  .env.example   # <— provided for reference
-```
-
-**Example (`backend/.env.example`):**
-
-```env
-# PostgreSQL
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASS=root
-DB_NAME=clubhub_db
-
-# Auth
-JWT_SECRET=change-this
-JWT_REFRESH_SECRET=change-this-too
-
-# App
-PORT=3000
-```
-
-> Your real `.env` is gitignored. Share `.env.example` with your team instead.
-
-### 4. Install & run
-
-```bash
-cd backend
-npm install
-npm run start:dev
-```
-
-You should see logs like:
-
-```
-🚀 Server running on http://localhost:3000
-📘 Swagger Docs available at http://localhost:3000/api/docs
-```
-
-**Open Swagger at:**  
-[http://localhost:3000/api/docs](http://localhost:3000/api/docs)
+**For Administration:**
+- Approve or reject event submissions
+- Prevent scheduling conflicts
+- Manage room allocations
 
 ---
 
-## Tips & Troubleshooting
+## Backend Architecture
 
-**Can't connect to DB?**  
-Double-check `.env` values and that PostgreSQL is running. Make sure the database exists.
+The backend is built with NestJS and follows a modular architecture:
 
-**Port already in use?**  
-Change `PORT` in `.env` or free the port (3000 by default).
+- **Authentication Module** - JWT-based auth with role guards
+- **Events Module** - Calendar management and conflict detection
+- **Clubs Module** - Club profiles and membership
+- **Publications Module** - Announcements and updates
+- **Users Module** - User management with role-based access
 
-**CSV uploads not working?**  
-In Swagger, use `multipart/form-data` and the field name `file` for the CSV; header must be `email`.
+**Database:** PostgreSQL with TypeORM ensures data integrity through constraints and relationships.
 
-**Auth not working?**  
-Tokens are short-lived. Use the `/auth/refresh` flow in Swagger when testing.
-
----
-
-## Docs
-
-| Resource | Location |
-|----------|----------|
-| **API Docs (live)** | [http://localhost:3000/api/docs](http://localhost:3000/api/docs) (Swagger UI) |
-| **Contract** | `docs/api-contract.md` (human-written spec you can read like a guide) |
-| **Database Schema** | `docs/db-schema.md` (tables, relationships, and constraints) |
+**API Documentation:** Full Swagger documentation available at `/api/docs` when running locally.
 
 ---
 
-## Mobile & Web
+## Getting Started
 
-- **Mobile (Flutter):** Coming Soon
-- **Web Admin (Next.js):** Coming Soon
+The backend can be run locally for development and testing. Refer to the inline documentation in `backend/` for environment setup and database configuration.
 
 ---
 
 ## License
 
-MIT — see the `LICENSE` file in the repo.
+MIT â€” see the `LICENSE` file in the repo.
